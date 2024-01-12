@@ -2,17 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OlaMundoController extends AbstractController
 {
-    #[Route('/ola/mundo', name: 'app_ola_mundo')]
-    public function index(): Response
+    #[Route('/ola_mundo', name: 'app_ola_mundo')]
+    public function index(Request $request): Response
     {
-        return $this->render('ola_mundo/index.html.twig', [
-            'controller_name' => 'OlaMundoController',
-        ]);
+        // dd($request->query->get('id'));
+        return new Response(
+            "id: " . $request->query->get('id'),
+            200,
+            [
+                'X-HEADER-QUALQUER' => 'Um header qualquer'
+            ]
+        );
     }
 }
