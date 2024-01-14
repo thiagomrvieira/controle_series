@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SeriesController extends AbstractController
 {
-    #[Route('/series', name: 'app_series')]
+    #[Route('/series', methods:['GET'], name: 'app_series')]
     public function index(): Response
     {
         $series = [
@@ -22,5 +22,13 @@ class SeriesController extends AbstractController
             'controller_name' => 'SeriesController',
             'series' => $series
         ]);
+    }
+    
+    #[Route('/series/new', methods:['GET'])]
+    public function create(): Response 
+    {
+        return $this->render(
+            'series/new.html.twig'
+        );
     }
 }
