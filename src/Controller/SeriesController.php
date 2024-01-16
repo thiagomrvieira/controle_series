@@ -24,7 +24,7 @@ class SeriesController extends AbstractController
         ]);
     }
     
-    #[Route('/series/new', methods:['GET'])]
+    #[Route('/series/new', methods:['GET'], name: 'series_create')]
     public function create(): Response 
     {
         return $this->render(
